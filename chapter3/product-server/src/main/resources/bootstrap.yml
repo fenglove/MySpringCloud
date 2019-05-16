@@ -1,0 +1,13 @@
+server:
+  port: 7073
+spring:
+  application:
+    name: product-server
+eureka:
+  instance:
+    # 此处建议写，不写默认是机器名
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${spring.application.instance_id:${server.port}}
+  client:
+    service-url:
+      defaultZone: http://localhost:7071/eureka/

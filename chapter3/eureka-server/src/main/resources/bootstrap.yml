@@ -1,0 +1,19 @@
+server:
+  port: 7071
+eureka:
+  instance:
+    prefer-ip-address: true
+  # 生产环境不建议修改Eureka配置
+  server:
+    enable-self-preservation: false
+    eviction-interval-timer-in-ms: 60000
+    remote-region-registry-fetch-interval: 5
+  client:
+    # 没必要自己把自己注册上去，所以可设置false
+    register-with-eureka: false
+    # 是否从Eureka Server上获取注册信息，默认true，此处建议修改成false（单机设置的意义不大）
+    fetch-registry: false
+    service-url:
+      defaultZone: http://localhost:${server.port}/eureka/
+    # 从 Eureka 服务器端获取注册信息的时间间隔（默认：30秒）
+    registry-fetch-interval-seconds: 5
